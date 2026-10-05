@@ -1,4 +1,4 @@
-#ifndef QUESTIONBANK_H
+﻿#ifndef QUESTIONBANK_H
 #define QUESTIONBANK_H
 
 #include "Triangle.h"
