@@ -4,21 +4,18 @@ using namespace std;
 
 int main()
 {
-    // ==============================================================
-    // 一、单独使用【部分类】：三角形题目对象的建立与基本操作
-    // ==============================================================
     cout << "========== 一、三角形题目类（部分类）的基本操作 ==========" << endl;
 
-    Triangle t1(101, 3, 4, 5);      // 调用重载构造函数
+    Triangle t1(101, 3, 4, 5);
     cout << "题目 101 的信息：" << endl;
     t1.show();
 
     cout << endl << "---------- 合法性验证：非法三边 ----------" << endl;
-    Triangle t2;                    // 调用默认构造函数
-    t2.init(102, 1, 2, 10);         // 1+2 < 10，不能构成三角形
+    Triangle t2;
+    t2.init(102, 1, 2, 10);
     cout << "题目 102 的信息：" << endl;
     t2.show();
-    t2.setSides(6, 6, 6);           // 重新修改为合法三边
+    t2.setSides(6, 6, 6);
     cout << "把题目 102 的三边改成 6, 6, 6 之后：" << endl;
     t2.show();
 
@@ -27,34 +24,31 @@ int main()
          << "，第 1 条边：" << t1.getSideA()
          << "，正确答案：" << t1.getRightAnswer() << endl;
 
-    // ==============================================================
-    // 二、整体类与部分类的组合关系：题库对象里装着题目对象
-    // ==============================================================
     cout << endl << "========== 二、用默认构造函数创建题库（组合关系） ==========" << endl;
-    QuestionBank bank1;             // 默认构造函数
+    QuestionBank bank1;
     bank1.show();
 
     cout << endl << "========== 三、用重载构造函数创建题库并管理题目 ==========" << endl;
-    QuestionBank bank2("三角形判断题库");       // 重载构造函数
+    QuestionBank bank2("三角形判断题库");
 
-    Triangle t3(103, 6, 6, 6);                  // 等边三角形
-    Triangle t4(104, 5, 5, 8);                  // 等腰三角形
-    Triangle t5(105, 1, 2, 10);                 // 非法三边，不能入库
+    Triangle t3(103, 6, 6, 6);
+    Triangle t4(104, 5, 5, 8);
+    Triangle t5(105, 1, 2, 10);
 
     cout << "---------- 向题库中增加题目 ----------" << endl;
     bank2.addQuestion(t1);
     bank2.addQuestion(t3);
     bank2.addQuestion(t4);
-    bank2.addQuestion(t5);                      // 会被合法性验证拦下来
+    bank2.addQuestion(t5);
 
     cout << endl << "---------- 输出显示题库内容 ----------" << endl;
     bank2.show();
 
     cout << endl << "---------- 做题：输入答案并自动判分 ----------" << endl;
-    bank2.answerQuestion(101, "直角三角形");     // 正确，得 10 分
-    bank2.answerQuestion(103, "等腰三角形");     // 错误，得 0 分
-    bank2.answerQuestion(104, "等腰三角形");     // 正确，得 10 分
-    bank2.answerQuestion(999, "一般三角形");     // 题库中没有这道题
+    bank2.answerQuestion(101, "直角三角形");
+    bank2.answerQuestion(103, "等腰三角形");
+    bank2.answerQuestion(104, "等腰三角形");
+    bank2.answerQuestion(999, "一般三角形");
 
     cout << endl << "---------- 查询题目 ----------" << endl;
     bank2.queryQuestion(103);
@@ -67,9 +61,6 @@ int main()
     bank2.deleteQuestion(103);
     bank2.show();
 
-    // ==============================================================
-    // 四、程序结束，对象自动撤销：先撤销题目对象，再撤销题库对象
-    // ==============================================================
     cout << endl << "========== 四、程序结束，对象开始析构 ==========" << endl;
     return 0;
 }
